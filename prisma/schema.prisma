@@ -24,6 +24,7 @@ model Message {
 model MessageGroup {
   id             String      @id @default(cuid())
   name           String      @db.VarChar(50)
+  emoji          String      @db.VarChar(1)
   messages       Message[]
   office_hour    OfficeHour? @relation(fields: [office_hour_id], references: [id])
   office_hour_id String?
