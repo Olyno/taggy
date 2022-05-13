@@ -11,31 +11,55 @@ datasource db {
 }
 
 model Message {
-  id               String       @id @default(cuid())
-  id_message       Int          @unique
-  content          String
-  author           String       @db.VarChar(50)
-  group            MessageGroup @relation(fields: [message_group_id], references: [id])
-  processed_at     DateTime?
-  bookmarked_at    DateTime     @default(now())
-  message_group_id String
+  id                 String         @id @default(cuid())
+  id_discord_message Int            @unique
+  content            String
+  author             String         @db.VarChar(50)
+  groups             MessageGroup[]
+  processed_at       DateTime?
+  bookmarked_at      DateTime       @default(now())
 }
 
 model MessageGroup {
   id         String    @id @default(cuid())
+  id_event   String?
   name       String    @db.VarChar(50)
   emoji      String    @db.VarChar(1)
   messages   Message[]
-  event      Event?    @relation(fields: [event_id], references: [id])
-  event_id   String?
+  event      Event?    @relation(fields: [id_event], references: [id])
   created_at DateTime  @default(now())
 }
 
 model Event {
   id             String         @id @default(cuid())
+  id_dashboard   String?
   name           String         @db.VarChar(50)
   location       String
   message_groups MessageGroup[]
+  is_private     Boolean        @default(true)
   created_by     String
   created_at     DateTime       @default(now())
+  dashboard      Dashboard?     @relation(fields: [id_dashboard], references: [id])
+}
+
+model Notification {
+  id               String     @id @default(cuid())
+  id_member        String
+  id_dashboard     String?
+  has_notification Boolean    @default(true)
+  dashboard        Dashboard? @relation(fields: [id_dashboard], references: [id])
+}
+
+model Dashboard {
+  id                    String         @id @default(cuid())
+  id_guild              String         @unique
+  id_members            String[]
+  members_notifications Notification[]
+  plan                  Plan           @default(FREE)
+  events                Event[]
+}
+
+enum Plan {
+  FREE
+  PREMIUM
 }
