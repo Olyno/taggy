@@ -22,16 +22,16 @@ model Message {
 }
 
 model MessageGroup {
-  id             String      @id @default(cuid())
-  name           String      @db.VarChar(50)
-  emoji          String      @db.VarChar(1)
+  id             String    @id @default(cuid())
+  name           String    @db.VarChar(50)
+  emoji          String    @db.VarChar(1)
   messages       Message[]
-  office_hour    OfficeHour? @relation(fields: [office_hour_id], references: [id])
+  office_hour    Event?    @relation(fields: [office_hour_id], references: [id])
   office_hour_id String?
-  created_at     DateTime    @default(now())
+  created_at     DateTime  @default(now())
 }
 
-model OfficeHour {
+model Event {
   id             String         @id @default(cuid())
   name           String         @db.VarChar(50)
   location       String
