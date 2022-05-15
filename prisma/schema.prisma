@@ -24,7 +24,7 @@ model MessageGroup {
   id         String    @id @default(cuid())
   id_event   String?
   name       String    @db.VarChar(50)
-  emoji      String    @db.VarChar(1)
+  emoji      String    @db.VarChar(50)
   messages   Message[]
   event      Event?    @relation(fields: [id_event], references: [id])
   created_at DateTime  @default(now())
