@@ -54,6 +54,7 @@ model Dashboard {
   id                    String         @id @default(cuid())
   id_guild              String         @unique
   id_members            String[]
+  guild_name            String         @db.VarChar(50)
   guild_image_url       String
   members_notifications Notification[]
   plan                  Plan           @default(FREE)
