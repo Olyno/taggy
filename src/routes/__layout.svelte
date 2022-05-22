@@ -20,7 +20,7 @@
 			if (!data) return { status: 400 };
 			return {
 				status: 302,
-				redirect: '/dashboard'
+				redirect: '/dashboards'
 			};
 		}
 		return {
@@ -43,6 +43,8 @@
 			socket.onmessage = event => {
 				const message = JSON.parse(event.data);
 				const channel = message.channel;
+				console.log('🚀 ~ file: __layout.svelte ~ line 46 ~ channel', typeof channel);
+				console.log('user.id:', typeof user?.id);
 				const type = message.type;
 				if (channel === user?.id) {
 					if (type === 'create.dashboard') {

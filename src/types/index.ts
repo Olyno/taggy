@@ -1,6 +1,7 @@
 export type MessageType = {
 	id: string;
 	id_discord_message: string;
+	url: string;
 	content: string;
 	author: string;
 	processed_at: string;

@@ -28,7 +28,7 @@
 			</li>
 		{:else}
 			<li>
-				<Button class="bg-accent" on:click={() => goto('/dashboard')}>
+				<Button class="bg-accent" href="/dashboards">
 					<img
 						class="w-12 h-12 rounded-full"
 						src="https://cdn.discordapp.com/avatars/{user.id}/{user.avatar}.png"

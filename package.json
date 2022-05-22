@@ -21,6 +21,7 @@
 		"@types/debug": "^4.1.7",
 		"@types/jsonwebtoken": "^8.5.8",
 		"@types/lodash": "^4.14.182",
+		"@types/markdown-it": "^12.2.3",
 		"@types/ws": "^8.5.3",
 		"prettier": "^2.5.1",
 		"prettier-plugin-svelte": "^2.5.0",
@@ -36,15 +37,19 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@junwatu/markdown-it-lazy-loading": "1.0.0-beta.4",
 		"@picmo/renderer-twemoji": "5.0.0-beta.10",
 		"@prisma/client": "^3.14.0",
 		"axios": "^0.27.2",
 		"cookie": "^0.5.0",
+		"dayjs": "^1.11.2",
 		"debug": "^4.3.4",
 		"dotenv": "^16.0.1",
 		"jsonwebtoken": "^8.5.1",
 		"jwt-decode": "^3.1.2",
 		"lodash": "^4.17.21",
+		"markdown-it": "^13.0.1",
+		"party-js": "^2.1.2",
 		"picmo": "5.0.0-beta.10"
 	}
 }

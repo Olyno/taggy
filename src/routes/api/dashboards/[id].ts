@@ -3,7 +3,8 @@ import type { UserSession } from '$types';
 import type { RequestHandler } from '@sveltejs/kit';
 import cookie from 'cookie';
 
-export const get: RequestHandler = async ({ request }) => {
+export const get: RequestHandler = async ({ request, params }) => {
+	const id = params.id;
 	const cookies = cookie.parse(request.headers.get('cookie') || '');
 
 	if (!cookies.session) {
@@ -12,16 +13,28 @@ export const get: RequestHandler = async ({ request }) => {
 
 	const session: UserSession = JSON.parse(cookies.session);
 
-	const dashboards_found = await prisma.dashboard.findMany({
+	const dashboard_found = await prisma.dashboard.findFirst({
 		where: {
+			id: id,
 			id_members: {
 				has: session.user.id
+			}
+		},
+		include: {
+			events: {
+				include: {
+					message_groups: {
+						include: {
+							messages: true
+						}
+					}
+				}
 			}
 		}
 	});
 
 	return {
 		status: 200,
-		body: dashboards_found
+		body: dashboard_found
 	};
 };

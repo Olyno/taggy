@@ -7,4 +7,6 @@ export const isMobile =
 
 export const dashboards = writable<DashboardType[]>([]);
 
+export const dashboard = writable<DashboardType | null>(null);
+
 export const socket = browser ? new WebSocket(`ws://${import.meta.env.VITE_SOCKET_SERVER}`) : null;
