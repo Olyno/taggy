@@ -13,6 +13,7 @@ datasource db {
 model Message {
   id                 String         @id @default(cuid())
   id_discord_message String         @unique
+  url                String         @unique
   content            String
   author             String         @db.VarChar(50)
   groups             MessageGroup[]
