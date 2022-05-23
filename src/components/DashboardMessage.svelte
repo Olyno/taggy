@@ -6,7 +6,6 @@
 	import LinkIcon from './icons/Link.svelte';
 
 	export let message: MessageType;
-	console.log('🚀 ~ file: DashboardMessage.svelte ~ line 9 ~ message', message);
 
 	async function readMessage() {
 		const body = {
@@ -24,7 +23,7 @@
 	const message_date = dayjs(message.bookmarked_at).format('DD/MM/YYYY');
 </script>
 
-<div class="border-2 rounded-md w-1/3 p-5 relative mt-5">
+<div class="border-2 rounded-md w-4/13 p-5 relative mt-5">
 	<div class="flex justify-between">
 		<div>
 			<!-- TODO: Add avatar of author -->

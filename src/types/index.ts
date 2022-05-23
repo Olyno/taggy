@@ -87,6 +87,13 @@ export type DiscordApplication = {
 	};
 };
 
+export type DashboardMemberType = {
+	id: string;
+	is_owner: boolean;
+	username: string;
+	avatar: string;
+};
+
 export type UserSession = {
 	application: DiscordApplication;
 	user: DiscordUser;

@@ -1,9 +1,10 @@
 <script context="module" lang="ts">
 	import { browser } from '$app/env';
 	import GlobalNavbar from '$components/GlobalNavbar.svelte';
-	import { dashboards as dashboards_store, socket } from '$lib/stores';
+	import { dashboards as dashboards_store, socket, socket_listening } from '$lib/stores';
 	import type { DiscordUser } from '$types';
 	import type { LoadInput } from '@sveltejs/kit';
+	import { onDestroy } from 'svelte';
 	import 'virtual:windi.css';
 
 	export async function load({ fetch, url, session }: LoadInput) {
@@ -39,28 +40,23 @@
 	if (browser) {
 		// @ts-ignore
 		import('virtual:windi-devtools');
-		if (socket) {
-			socket.onmessage = event => {
-				const message = JSON.parse(event.data);
-				const channel = message.channel;
-				console.log('🚀 ~ file: __layout.svelte ~ line 46 ~ channel', typeof channel);
-				console.log('user.id:', typeof user?.id);
-				const type = message.type;
-				if (channel === user?.id) {
-					if (type === 'create.dashboard') {
-						dashboards_store.update(dashboards => [...dashboards, message.data]);
-					} else if (type === 'delete.dashboard') {
-						dashboards_store.update(dashboards =>
-							dashboards.filter(dashboard => dashboard.id !== message.data.id)
-						);
-					}
-				}
-			};
-			socket.onopen = () => {
-				socket?.send(JSON.stringify({ channel: 'connection', id: user?.id, data: user }));
-			};
-		}
 	}
+
+	socket?.on('create.dashboard', newDashboard => {
+		dashboards_store.update(dashboards => [...dashboards, newDashboard]);
+	});
+	socket?.on('delete.dashboard', oldDashboard => {
+		dashboards_store.update(dashboards =>
+			dashboards.filter(dashboard => dashboard.id !== oldDashboard.id)
+		);
+	});
+
+	const unsubscribe = socket_listening.subscribe(is_listening => {
+		if (!is_listening) return;
+		socket?.emit('connection', { id: user?.id, data: user });
+	});
+
+	onDestroy(unsubscribe);
 </script>
 
 <GlobalNavbar {user} />
