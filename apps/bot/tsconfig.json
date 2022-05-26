@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"lib": ["esnext"],
+		"rootDir": "./src",
+		"outDir": "./dist",
+		"declaration": true,
+		"strict": true,
+		"noImplicitAny": false,
+		"esModuleInterop": true,
+		"moduleResolution": "Node",
+		"sourceMap": true,
+		"paths": {
+			"$configs/*": ["../../configs/*"]
+		}
+	},
+	"exclude": ["dist", "node_modules"]
+}

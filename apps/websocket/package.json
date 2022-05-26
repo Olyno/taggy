@@ -1,0 +1,21 @@
+{
+	"name": "@taggy/websocket",
+	"version": "1.0.0",
+	"main": "src/index.ts",
+	"license": "MIT",
+	"scripts": {
+		"start": "esr src/index.ts",
+		"dev": "nodemon --watch \"./src/**/*.ts\" --exec \"pnpm start\"",
+		"format": "prettier --write \"src/**/*.ts\""
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.31",
+		"esbuild": "^0.14.39",
+		"esbuild-runner": "^2.2.1",
+		"nodemon": "^2.0.16",
+		"typescript": "^4.6.4"
+	},
+	"dependencies": {
+		"socket.io": "^4.5.1"
+	}
+}
