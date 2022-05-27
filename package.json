@@ -2,19 +2,23 @@
 	"name": "taggy",
 	"version": "1.0.0",
 	"types": "module",
+	"workspaces": [
+		"apps/*"
+	],
 	"scripts": {
-		"start": "pnpm --parallel -r start",
-		"start:bot": "pnpm --filter @taggy/bot start",
-		"start:web": "pnpm --filter @taggy/web start",
-		"start:websocket": "pnpm --filter @taggy/websocket start",
-		"dev": "pnpm --parallel -r dev",
-		"dev:bot": "pnpm --filter @taggy/bot dev",
-		"dev:web": "pnpm --filter @taggy/web dev",
-		"dev:websocket": "pnpm --filter @taggy/websocket dev",
-		"format": "pnpm --parallel -r format",
-		"format:bot": "pnpm --filter @taggy/bot format",
-		"format:web": "pnpm --filter @taggy/web format",
-		"format:websocket": "pnpm --filter @taggy/websocket format"
+		"start": "yarn workspaces foreach -p run start",
+		"start:bot": "yarn workspace @taggy/bot run start",
+		"start:web": "yarn workspace @taggy/web run start",
+		"start:websocket": "yarn workspace @taggy/websocket run start",
+		"dev": "yarn workspaces foreach -p run dev",
+		"dev:bot": "yarn workspace @taggy/bot run dev",
+		"dev:web": "yarn workspace @taggy/web run dev",
+		"dev:websocket": "yarn workspace @taggy/websocket run dev",
+		"format": "yarn workspaces foreach -p run format",
+		"format:bot": "yarn workspace @taggy/bot run format",
+		"format:web": "yarn workspace @taggy/web run format",
+		"format:websocket": "yarn workspace @taggy/websocket run format",
+		"test": "node ./t.js"
 	},
 	"devDependencies": {
 		"@types/debug": "^4.1.7",
@@ -30,5 +34,6 @@
 		"debug": "^4.3.4",
 		"dotenv": "^16.0.1",
 		"envsafe": "^2.0.3"
-	}
+	},
+	"packageManager": "yarn@3.2.1"
 }
