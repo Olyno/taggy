@@ -1,4 +1,4 @@
-import { env } from '$lib/env';
+import { env } from '$configs/env';
 import type { DiscordAuthResponse, Response } from '$types';
 import axios from 'axios';
 import 'dotenv/config';

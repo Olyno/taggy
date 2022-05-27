@@ -9,6 +9,10 @@
 		"node": ">=16.9.0"
 	},
 	"scripts": {
+		"build": "yarn workspaces foreach -p run build",
+		"build:bot": "yarn workspace @taggy/bot run build",
+		"build:web": "yarn workspace @taggy/web run build",
+		"build:websocket": "yarn workspace @taggy/websocket run build",
 		"start": "yarn workspaces foreach -p run start",
 		"start:bot": "yarn workspace @taggy/bot run start",
 		"start:web": "yarn workspace @taggy/web run start",

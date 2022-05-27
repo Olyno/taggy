@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "esr src/index.ts",
-		"dev": "nodemon --exec \"pnpm start\" ./src/**/*.ts",
+		"dev": "nodemon --exec \"run start\" ./src/**/*.ts",
 		"format": "prettier --write \"src/**/*.ts\""
 	},
 	"devDependencies": {

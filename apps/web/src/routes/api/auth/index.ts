@@ -1,6 +1,6 @@
 import { api_logs } from '$configs/debug';
+import { env } from '$configs/env';
 import { loginWithDiscord } from '$lib/auth/discord';
-import { env } from '$lib/env';
 import type { RequestHandler } from '@sveltejs/kit';
 import cookie from 'cookie';
 
