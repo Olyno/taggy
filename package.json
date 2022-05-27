@@ -5,6 +5,9 @@
 	"workspaces": [
 		"apps/*"
 	],
+	"engines": {
+		"node": ">=16.9.0"
+	},
 	"scripts": {
 		"start": "yarn workspaces foreach -p run start",
 		"start:bot": "yarn workspace @taggy/bot run start",
