@@ -9,7 +9,12 @@ const auth_logs = api_logs.extend('auth');
 export const post: RequestHandler = async ({ request }) => {
 	const req = await request.json();
 	const code = req.code;
-	const data = await loginWithDiscord(code);
+	const data = await loginWithDiscord(code).catch(err => {
+		auth_logs('Error: %s', err);
+		return {
+			body: null
+		};
+	});
 
 	if (!data.body) return data;
 
