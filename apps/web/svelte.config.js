@@ -1,10 +1,8 @@
 import adapter from '@sveltejs/adapter-node';
-import { config as loadEnv } from 'dotenv';
 import path from 'path';
 import preprocess from 'svelte-preprocess';
 import WindiCSS from 'vite-plugin-windicss';
-
-loadEnv({ path: path.resolve(process.cwd(), '../../.env') });
+import '../../configs/env.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {

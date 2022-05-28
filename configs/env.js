@@ -12,11 +12,11 @@ export const env = envsafe({
 		choices: ['development', 'production']
 	}),
 	DEBUG: str({
-		default: 'server:*,bot,websocket-server',
-		devDefault: 'server:*,bot,websocket-server'
+		default: 'server:*,bot',
+		devDefault: 'server:*,bot'
 	}),
 	VITE_SOCKET_SERVER: str({
-		devDefault: 'ws://localhost:8080'
+		devDefault: 'http://localhost:3000'
 	}),
 	VITE_DISCORD_CLIENT_ID: str(),
 	DISCORD_CLIENT_SECRET: str(),

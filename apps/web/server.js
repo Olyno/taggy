@@ -1,7 +1,8 @@
-import debug from 'debug';
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import { api_logs, socket_logs } from '../../configs/debug.js';
+import { env } from '../../configs/env.js';
 import { handler } from './dist/handler.js';
 
 function isNumeric(num) {
@@ -16,13 +17,10 @@ function getServer() {
 	return createServer(app);
 }
 
-debug.enable('server:*');
-
-const socket_logs = debug('server:socket');
 const server = getServer();
 const io = new Server(server, {
 	cors: {
-		origin: ['http://localhost:3000', 'https://taggybot.xyz']
+		origin: ['http://localhost:3000', env.VITE_SOCKET_SERVER]
 	}
 });
 
@@ -64,4 +62,4 @@ io.on('connection', socket => {
 	});
 });
 
-server.listen(3000, () => socket_logs('Listening on port 3000'));
+server.listen(3000, () => api_logs('Listening on port 3000'));

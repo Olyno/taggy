@@ -10,7 +10,7 @@ export const dashboards = writable<DashboardType[]>([]);
 
 export const dashboard = writable<DashboardType | null>(null);
 
-export const socket = browser ? io(import.meta.env.VITE_SOCKET_SERVER) : null;
+export const socket = browser ? io() : null;
 
 export const socket_listening = writable<boolean>(false);
 
