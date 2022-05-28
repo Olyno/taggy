@@ -1,14 +1,13 @@
-import { env } from '$configs/env';
-import { prisma } from '$configs/prisma';
-import debug from 'debug';
+import { bot_logs } from '$configs/debug.js';
+import { env } from '$configs/env.js';
+import { prisma } from '$configs/prisma.js';
 import { Client, GuildMember, Intents } from 'discord.js';
 import { io } from 'socket.io-client';
 import { setupCommands } from './commands';
 import { createDashboard, createMessage, deleteDashboard, deleteMessage, seed } from './database';
 import { defined, findMembers } from './utils';
 
-const bot_logs = debug('bot');
-const socket = io(env.VITE_SOCKET_SERVER);
+const socket = io(env.VITE_SOCKET_SERVER.replace(/^https?:\/\//g, 'wss://'));
 
 const client = new Client({
 	intents: [

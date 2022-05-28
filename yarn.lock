@@ -351,6 +351,7 @@ __metadata:
     debug: ^4.3.4
     dotenv: ^16.0.1
     envsafe: ^2.0.3
+    express: ^4.18.1
     lodash: ^4.17.21
     markdown-it: ^13.0.1
     party-js: ^2.1.2
@@ -358,6 +359,7 @@ __metadata:
     prettier: ^2.5.1
     prettier-plugin-svelte: ^2.5.0
     prisma: ^3.14.0
+    socket.io: ^4.5.1
     socket.io-client: ^4.5.1
     svelte: ^3.44.0
     svelte-check: ^2.2.6
@@ -366,19 +368,6 @@ __metadata:
     typescript: ~4.6.2
     vite: ^2.9.9
     vite-plugin-windicss: ^1.8.4
-  languageName: unknown
-  linkType: soft
-
-"@taggy/websocket@workspace:apps/websocket":
-  version: 0.0.0-use.local
-  resolution: "@taggy/websocket@workspace:apps/websocket"
-  dependencies:
-    "@types/node": ^17.0.31
-    esbuild: ^0.14.39
-    esbuild-runner: ^2.2.1
-    nodemon: ^2.0.16
-    socket.io: ^4.5.1
-    typescript: ^4.6.4
   languageName: unknown
   linkType: soft
 
@@ -567,10 +556,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=10.0.0, @types/node@npm:^17.0.31":
+"@types/node@npm:*, @types/node@npm:^17.0.31":
   version: 17.0.35
   resolution: "@types/node@npm:17.0.35"
   checksum: 7a24946ae7fd20267ed92466384f594e448bfb151081158d565cc635d406ecb29ea8fb85fcd2a1f71efccf26fb5bd3c6f509bde56077eb8b832b847a6664bc62
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:>=10.0.0":
+  version: 17.0.36
+  resolution: "@types/node@npm:17.0.36"
+  checksum: 11055fde0a1e1421113849b5e32c7022911efc0be670729947bf0162970e79962d804b1eb8a9afb291380cac97cf0e684511415d586ae5fe1560322c940fe188
   languageName: node
   linkType: hard
 
@@ -1927,7 +1923,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:^4.17.3":
+"express@npm:^4.17.3, express@npm:^4.18.1":
   version: 4.18.1
   resolution: "express@npm:4.18.1"
   dependencies:
