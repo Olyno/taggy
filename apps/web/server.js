@@ -1,6 +1,5 @@
 import express from 'express';
 import { createServer as createDevServer } from 'http';
-import { createServer as createProdServer } from 'https';
 import { Server } from 'socket.io';
 import { env } from '../../configs/env.js';
 import { handler } from './dist/handler.js';
@@ -14,7 +13,7 @@ function getServer() {
 	const app = express();
 	app.get('/healthcheck', (_, res) => res.end('ok'));
 	app.use(handler);
-	return env.NODE_ENV === 'production' ? createProdServer(app) : createDevServer(app);
+	return createDevServer(app);
 }
 
 const server = getServer();
