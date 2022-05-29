@@ -5,11 +5,10 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "esr src/index.ts",
-		"dev": "nodemon --exec \"run start\" ./src/**/*.ts",
+		"dev": "nodemon --exec \"pnpm start\" ./src/**/*.ts",
 		"format": "prettier --write \"src/**/*.ts\""
 	},
 	"devDependencies": {
-		"@types/debug": "^4",
 		"@types/node": "^17.0.31",
 		"@types/prettier": "^2",
 		"esbuild": "^0.14.39",
@@ -23,7 +22,6 @@
 		"@discordjs/builders": "^0.13.0",
 		"@discordjs/rest": "^0.4.1",
 		"@prisma/client": "^3.14.0",
-		"debug": "^4.3.4",
 		"discord-api-types": "^0.32.0",
 		"discord.js": "^13.6.0",
 		"dotenv": "^16.0.0",

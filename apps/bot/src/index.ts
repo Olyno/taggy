@@ -1,4 +1,3 @@
-import { bot_logs } from '$configs/debug.js';
 import { env } from '$configs/env.js';
 import { prisma } from '$configs/prisma.js';
 import { Client, GuildMember, Intents } from 'discord.js';
@@ -23,22 +22,22 @@ const client = new Client({
 // client.on('interactionCreate', interaction => {
 //   if (!interaction.isCommand()) return;
 //   runCommand(interaction.commandName, interaction)
-//     .then(() => bot_logs('Command %s executed', interaction.commandName))
+//     .then(() => console.log('Command %s executed', interaction.commandName))
 //     .catch(err =>
-//       bot_logs('Command %s error: %s', interaction.commandName, err)
+//       console.log('Command %s error: %s', interaction.commandName, err)
 //     );
 // });
 
 client.once('ready', () => {
-	bot_logs('Ready');
+	console.log('Ready');
 	setupCommands(client, env)
-		.then(() => bot_logs('Commands setup'))
-		.catch(err => bot_logs('Commands setup error: %s', err));
+		.then(() => console.log('Commands setup'))
+		.catch(err => console.log('Commands setup error: %s', err));
 });
 
 socket.on('connect', () => {
 	socket.emit('connection', { id: 'bot' });
-	bot_logs('Socket connected');
+	console.log('Socket connected');
 });
 
 socket.on('search', async message => {
@@ -118,7 +117,7 @@ client.on('guildCreate', async guild => {
 		channel: guild.ownerId,
 		data: dashboard
 	});
-	bot_logs('Joined guild %s (%d)', guild.name, guild.id);
+	console.log('Joined guild %s (%d)', guild.name, guild.id);
 });
 
 client.on('guildDelete', async guild => {
@@ -128,7 +127,7 @@ client.on('guildDelete', async guild => {
 		id: 'bot',
 		data: dashboard
 	});
-	bot_logs('Left guild %s (%d)', guild.name, guild.id);
+	console.log('Left guild %s (%d)', guild.name, guild.id);
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {

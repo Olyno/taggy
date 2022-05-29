@@ -1,16 +1,13 @@
-import { api_logs } from '$configs/debug';
 import { env } from '$configs/env';
 import { loginWithDiscord } from '$lib/auth/discord';
 import type { RequestHandler } from '@sveltejs/kit';
 import cookie from 'cookie';
 
-const auth_logs = api_logs.extend('auth');
-
 export const post: RequestHandler = async ({ request }) => {
 	const req = await request.json();
 	const code = req.code;
 	const data = await loginWithDiscord(code).catch(err => {
-		auth_logs('Error: %s', err);
+		console.log('Error: %s', err);
 		return {
 			body: null
 		};
@@ -18,7 +15,7 @@ export const post: RequestHandler = async ({ request }) => {
 
 	if (!data.body) return data;
 
-	auth_logs('Logged to discord: %s (%d)', data.body.user.username, data.body.user.id);
+	console.log('Logged to discord: %s (%d)', data.body.user.username, data.body.user.id);
 
 	const session = {
 		application: data.body.application,
@@ -51,7 +48,7 @@ export const del: RequestHandler = async ({ request }) => {
 
 	const user = JSON.parse(cookies.session).user;
 
-	auth_logs('Logout:', `${user.username} (${user.id})`);
+	console.log('Logout:', `${user.username} (${user.id})`);
 
 	return {
 		headers: {
