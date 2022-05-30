@@ -1,7 +1,6 @@
 import { env } from '$configs/env';
 import type { DiscordAuthResponse, Response } from '$types';
 import axios from 'axios';
-import 'dotenv/config';
 
 const endpoint = 'https://discord.com/api/v10';
 const client_id = import.meta.env.VITE_DISCORD_CLIENT_ID;
