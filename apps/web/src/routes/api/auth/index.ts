@@ -7,7 +7,7 @@ export const post: RequestHandler = async ({ request }) => {
 	const req = await request.json();
 	const code = req.code;
 	const data = await loginWithDiscord(code).catch(err => {
-		console.log('Error: %s', err);
+		console.log('Error: %s', err.response.data);
 		return {
 			body: null
 		};
