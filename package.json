@@ -24,8 +24,7 @@
 		"format": "pnpm --recursive --parallel run format",
 		"format:bot": "pnpm run format --filer @taggy/bot",
 		"format:web": "pnpm run format --filer @taggy/web",
-		"format:websocket": "pnpm run format --filer @taggy/websocket",
-		"test": "node ./t.js"
+		"format:websocket": "pnpm run format --filer @taggy/websocket"
 	},
 	"devDependencies": {
 		"prettier": "^2.5.1",

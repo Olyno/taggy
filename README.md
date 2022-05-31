@@ -3,7 +3,7 @@
 ## Default commands:
 
 ```
-pnpm i
-pnpm dev
-pnpm start
+yarn i
+yarn dev
+yarn start
 ```
