@@ -12,19 +12,15 @@
 		"build": "pnpm --recursive --parallel run build",
 		"build:bot": "pnpm run build --filer @taggy/bot",
 		"build:web": "pnpm run build --filer @taggy/web",
-		"build:websocket": "pnpm run build --filer @taggy/websocket",
 		"start": "pnpm --recursive run start",
 		"start:bot": "pnpm run start --filer @taggy/bot",
 		"start:web": "pnpm run start --filer @taggy/web",
-		"start:websocket": "pnpm run start --filer @taggy/websocket",
 		"dev": "pnpm --recursive run dev",
 		"dev:bot": "pnpm run dev --filer @taggy/bot",
 		"dev:web": "pnpm run dev --filer @taggy/web",
-		"dev:websocket": "pnpm run dev --filer @taggy/websocket",
 		"format": "pnpm --recursive --parallel run format",
 		"format:bot": "pnpm run format --filer @taggy/bot",
-		"format:web": "pnpm run format --filer @taggy/web",
-		"format:websocket": "pnpm run format --filer @taggy/websocket"
+		"format:web": "pnpm run format --filer @taggy/web"
 	},
 	"devDependencies": {
 		"prettier": "^2.5.1",
