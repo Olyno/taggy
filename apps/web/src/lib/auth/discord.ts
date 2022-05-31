@@ -3,19 +3,19 @@ import type { DiscordAuthResponse, Response } from '$types';
 import axios from 'axios';
 
 const endpoint = 'https://discord.com/api/v10';
-const client_id = import.meta.env.VITE_DISCORD_CLIENT_ID;
+const client_id = env.VITE_DISCORD_CLIENT_ID;
 const client_secret = env.DISCORD_CLIENT_SECRET;
-const redirect_uri = 'http://localhost:3000';
+const redirect_uri = env.VITE_SOCKET_SERVER;
 
 function jsonToUrlParams(data: Record<string, any>) {
 	const params = new URLSearchParams();
 	for (const key in data) {
-		params.append(key, `${data[key]}`);
+		params.append(key, data[key]);
 	}
 	return params;
 }
 
-function getAccessToken(code: string) {
+async function getAccessToken(code: string) {
 	return axios
 		.post(
 			endpoint + '/oauth2/token',
@@ -35,7 +35,7 @@ function getAccessToken(code: string) {
 		.then(({ data }) => data);
 }
 
-function getUserInfos(access_token: string): Promise<DiscordAuthResponse> {
+async function getUserInfos(access_token: string): Promise<DiscordAuthResponse> {
 	return axios
 		.get(endpoint + '/oauth2/@me', {
 			headers: {

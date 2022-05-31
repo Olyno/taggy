@@ -1,5 +1,5 @@
 import express from 'express';
-import { createServer } from 'http';
+import { createServer as createDevServer } from 'http';
 import { Server } from 'socket.io';
 import { env } from '../../configs/env.js';
 import { handler } from './dist/handler.js';
@@ -13,7 +13,7 @@ function getServer() {
 	const app = express();
 	app.get('/healthcheck', (_, res) => res.end('ok'));
 	app.use(handler);
-	return createServer(app);
+	return createDevServer(app);
 }
 
 const server = getServer();
