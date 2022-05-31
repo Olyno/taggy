@@ -8,17 +8,14 @@ const client_secret = env.DISCORD_CLIENT_SECRET;
 const redirect_uri = env.VITE_SOCKET_SERVER;
 
 function jsonToUrlParams(data: Record<string, any>) {
-	console.log('🚀 ~ file: discord.ts ~ line 11 ~ jsonToUrlParams ~ data', data);
 	const params = new URLSearchParams();
 	for (const key in data) {
-		console.log('🚀 ~ file: discord.ts ~ line 13 ~ jsonToUrlParams ~ key', key);
 		params.append(key, data[key]);
 	}
 	return params;
 }
 
 async function getAccessToken(code: string) {
-	console.log('🚀 ~ file: discord.ts ~ line 31 ~ getAccessToken ~ redirect_uri', redirect_uri);
 	return axios
 		.post(
 			endpoint + '/oauth2/token',
