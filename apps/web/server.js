@@ -55,8 +55,6 @@ io.on('connection', socket => {
 			socket.on('search.exact', message => {
 				socket.to('bot').emit('search.exact', message);
 			});
-
-			console.log(`Web > ${message.data.id}: New connection`);
 		}
 	});
 });
