@@ -22,16 +22,19 @@ export const getSession: GetSession = event => {
 };
 */
 
+import { handleDiscordAuth } from '$lib/handlers/discord';
 import { handleAuth } from '@supabase/auth-helpers-sveltekit';
 import type { GetSession, Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
-export const handle: Handle = sequence(...handleAuth());
+export const handle: Handle = sequence(...handleAuth(), handleDiscordAuth);
 
 export const getSession: GetSession = async event => {
-	const { user, accessToken, error } = event.locals;
+	const { user, user_infos, accessToken, error } = event.locals;
+	console.log('🚀 ~ file: hooks.ts ~ line 33 ~ user_infos', user_infos);
 	return {
 		user,
+		user_infos,
 		accessToken,
 		error
 	};

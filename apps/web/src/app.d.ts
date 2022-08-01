@@ -13,6 +13,7 @@ declare namespace App {
 		accessToken?: string;
 	}
 	interface Locals extends UserSession {
+		user_infos: _DiscordAuthResponse;
 		error: import('@supabase/supabase-js').ApiError;
 	}
 	interface Session extends UserSession {}

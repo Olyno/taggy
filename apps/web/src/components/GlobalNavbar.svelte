@@ -1,21 +1,15 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import { supabaseClient } from '$lib/db';
 	import type { DiscordUser } from '$types';
 	import Button from './form/Button.svelte';
 
 	export let user: DiscordUser | null = null;
 
-	function createDiscordLoginLink() {
-		const scopes = ['identify'];
-		const redirect_uri = window.location.origin;
-		const client_id = import.meta.env.VITE_DISCORD_CLIENT_ID;
-		return `https://discord.com/oauth2/authorize?response_type=code&client_id=${client_id}&scope=${scopes.join(
-			'%20'
-		)}&state=15773059ghq9183habn&redirect_uri=${redirect_uri}&prompt=consent"`;
-	}
-
 	function loginWithDiscord() {
-		return goto(createDiscordLoginLink());
+		const scopes = ['identify']
+		return supabaseClient?.auth.signIn({
+			provider: 'discord',
+		}, { scopes: scopes.join(' ') })
 	}
 </script>
 

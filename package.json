@@ -10,17 +10,17 @@
 	},
 	"scripts": {
 		"build": "pnpm --recursive --parallel run build",
-		"build:bot": "pnpm run build --filer @taggy/bot",
-		"build:web": "pnpm run build --filer @taggy/web",
+		"build:bot": "pnpm run --filter @taggy/bot build",
+		"build:web": "pnpm run --filter @taggy/web build",
 		"start": "pnpm --recursive run start",
-		"start:bot": "pnpm run start --filer @taggy/bot",
-		"start:web": "pnpm run start --filer @taggy/web",
+		"start:bot": "pnpm run --filter @taggy/bot start",
+		"start:web": "pnpm run --filter @taggy/web start",
 		"dev": "pnpm --recursive run dev",
-		"dev:bot": "pnpm run dev --filer @taggy/bot",
-		"dev:web": "pnpm run dev --filer @taggy/web",
+		"dev:bot": "pnpm run --filter @taggy/bot dev",
+		"dev:web": "pnpm run --filter @taggy/web dev",
 		"format": "pnpm --recursive --parallel run format",
-		"format:bot": "pnpm run format --filer @taggy/bot",
-		"format:web": "pnpm run format --filer @taggy/web"
+		"format:bot": "pnpm run --filter @taggy/bot format",
+		"format:web": "pnpm run --filter @taggy/web format"
 	},
 	"devDependencies": {
 		"prettier": "^2.5.1",

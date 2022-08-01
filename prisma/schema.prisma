@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Message {
-  id                 String         @id @default(cuid())
+  id                 String         @id @default(uuid())
   id_discord_message String         @unique
   url                String         @unique
   content            String
@@ -22,7 +22,7 @@ model Message {
 }
 
 model MessageGroup {
-  id         String    @id @default(cuid())
+  id         String    @id @default(uuid())
   id_event   String?
   name       String    @db.VarChar(50)
   emoji      String    @db.VarChar(50)
@@ -32,7 +32,7 @@ model MessageGroup {
 }
 
 model Event {
-  id             String         @id @default(cuid())
+  id             String         @id @default(uuid())
   id_dashboard   String?
   name           String         @db.VarChar(50)
   location       String
@@ -44,7 +44,7 @@ model Event {
 }
 
 model Notification {
-  id               String     @id @default(cuid())
+  id               String     @id @default(uuid())
   id_member        String
   id_dashboard     String?
   has_notification Boolean    @default(true)
@@ -52,7 +52,7 @@ model Notification {
 }
 
 model Dashboard {
-  id                    String         @id @default(cuid())
+  id                    String         @id @default(uuid())
   id_guild              String         @unique
   id_members            String[]
   guild_name            String         @db.VarChar(50)
