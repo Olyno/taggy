@@ -1,7 +1,4 @@
-import type { UserSession } from '$types';
-import type { GetSession, Handle } from '@sveltejs/kit';
-import cookie from 'cookie';
-
+/*
 export const handle: Handle = async ({ event, resolve }) => {
 	const request = event.request;
 	const cookies = cookie.parse(request.headers.get('cookie') || '');
@@ -22,4 +19,20 @@ export const getSession: GetSession = event => {
 	const { authenticated } = event.locals;
 	if (!authenticated) return {};
 	return event.locals;
+};
+*/
+
+import { handleAuth } from '@supabase/auth-helpers-sveltekit';
+import type { GetSession, Handle } from '@sveltejs/kit';
+import { sequence } from '@sveltejs/kit/hooks';
+
+export const handle: Handle = sequence(...handleAuth());
+
+export const getSession: GetSession = async event => {
+	const { user, accessToken, error } = event.locals;
+	return {
+		user,
+		accessToken,
+		error
+	};
 };

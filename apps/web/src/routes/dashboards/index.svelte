@@ -4,9 +4,9 @@
 	import TextInput from '$components/form/TextInput.svelte';
 	import { dashboards as dashboards_store } from '$lib/stores';
 	import type { DiscordApplication } from '$types';
-	import type { LoadInput } from '@sveltejs/kit';
+	import type { Load } from '@sveltejs/kit';
 
-	export async function load({ session, fetch }: LoadInput) {
+	export const load: Load = async ({ session, fetch }) => {
 		return {
 			status: 200,
 			props: {
@@ -14,7 +14,7 @@
 				application: session.application
 			}
 		};
-	}
+	};
 </script>
 
 <script lang="ts">

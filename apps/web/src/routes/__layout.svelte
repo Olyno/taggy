@@ -1,13 +1,14 @@
 <script context="module" lang="ts">
 	import { browser } from '$app/env';
+	import { session } from '$app/stores';
 	import GlobalNavbar from '$components/GlobalNavbar.svelte';
 	import { dashboards as dashboards_store, socket, socket_listening } from '$lib/stores';
 	import type { DiscordUser } from '$types';
-	import type { LoadInput } from '@sveltejs/kit';
+	import type { Load } from '@sveltejs/kit';
 	import { onDestroy } from 'svelte';
 	import 'virtual:windi.css';
 
-	export async function load({ fetch, url, session }: LoadInput) {
+	export const load: Load = async ({ fetch, url, session }) => {
 		const { searchParams } = url;
 		// @ts-ignore
 		if (searchParams && searchParams.get('code') && !session.authenticated) {
@@ -31,10 +32,13 @@
 				user: session.user
 			}
 		};
-	}
+	};
 </script>
 
 <script lang="ts">
+	import { supabaseClient } from '$lib/db';
+	import { SupaAuthHelper } from '@supabase/auth-helpers-svelte';
+
 	export let user: DiscordUser | null = null;
 
 	if (browser) {
@@ -61,4 +65,6 @@
 
 <GlobalNavbar {user} />
 
-<slot />
+<SupaAuthHelper {supabaseClient} {session}>
+	<slot />
+</SupaAuthHelper>

@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	export async function load({ session }: LoadInput) {
+	export const load: Load = async ({ session }) => {
 		return {
 			status: 200,
 			props: {
@@ -7,7 +7,7 @@
 				user: session.user
 			}
 		};
-	}
+	};
 </script>
 
 <script lang="ts">
@@ -17,7 +17,7 @@
 	import { searchMembers } from '$lib/socket';
 	import { dashboard as dashboard_store, socket_listening } from '$lib/stores';
 	import type { DashboardMemberType, DiscordUser } from '$types';
-	import type { LoadInput } from '@sveltejs/kit';
+	import type { Load } from '@sveltejs/kit';
 	import { onDestroy } from 'svelte';
 
 	export let user: DiscordUser;

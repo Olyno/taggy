@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
 	import { dashboard as dashboard_store } from '$lib/stores';
 	import type { DashboardType } from '$types';
-	import type { LoadInput } from '@sveltejs/kit';
+	import type { Load } from '@sveltejs/kit';
 
-	export async function load({ fetch, params }: LoadInput) {
+	export const load: Load = async ({ fetch, params }) => {
 		const dashboard_response = await fetch('/api/dashboards/' + params.id);
 		const dashboard = dashboard_response.ok && (await dashboard_response.json());
 		if (!dashboard) {
@@ -18,7 +18,7 @@
 				dashboard
 			}
 		};
-	}
+	};
 </script>
 
 <script lang="ts">

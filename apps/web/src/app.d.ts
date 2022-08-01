@@ -8,12 +8,19 @@ declare namespace App {
 	type _DiscordApplication = import('$types').DiscordApplication;
 	type _User = import('$types').User;
 
-	interface Locals {
+	interface UserSession {
+		user: import('@supabase/supabase-js').User;
+		accessToken?: string;
+	}
+	interface Locals extends UserSession {
+		error: import('@supabase/supabase-js').ApiError;
+	}
+	interface Session extends UserSession {}
+	/*interface Locals {
 		user: _User;
 		application: _DiscordApplication;
 		authenticated: boolean;
-	}
+	}*/
 	// interface Platform {}
-	interface Session {}
 	// interface Stuff {}
 }

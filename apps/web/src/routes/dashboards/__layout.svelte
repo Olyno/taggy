@@ -5,9 +5,9 @@
 	import Sidebar from '$components/Sidebar.svelte';
 	import { dashboards as dashboards_store } from '$lib/stores';
 	import type { DashboardType } from '$types';
-	import type { LoadInput } from '@sveltejs/kit';
+	import type { Load } from '@sveltejs/kit';
 
-	export async function load({ session, fetch, url }: LoadInput) {
+	export const load: Load = async ({ session, fetch, url }) => {
 		// @ts-ignore
 		if (!session.authenticated) {
 			return { status: 302, redirect: '/' };
@@ -20,7 +20,7 @@
 				dashboards: data || []
 			}
 		};
-	}
+	};
 </script>
 
 <script lang="ts">
